@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowers Day 🌹</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(120deg, #f6d365, #fda085);
+            overflow: hidden;
+        }
+
+        /* Floating flowers background */
+        .flower {
+            position: absolute;
+            font-size: 20px;
+            animation: float 10s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh);
+            }
+
+            100% {
+                transform: translateY(-10vh);
+            }
+        }
+
+        /* Glass Card */
+        .card {
+            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+            color: rgb(248, 79, 79);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Heading */
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        /* Typing text */
+        #typing {
+            font-size: 1.2em;
+            min-height: 40px;
+        }
+
+        /* Button */
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            background: #ff5e78;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #ff2e55;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h1>Happy Flowers Day Babi 🌸</h1>
+        <p id="typing"></p>
+        <button onclick="nextMessage()">Hehe 💌</button>
+    </div>
+
+    <script>
+        // Floating flowers
+        function createFlower() {
+            const flower = document.createElement("div");
+            flower.classList.add("flower");
+            flower.innerHTML = "🌹";
+            flower.style.left = Math.random() * window.innerWidth + "px";
+            flower.style.animationDuration = (5 + Math.random() * 5) + "s";
+            document.body.appendChild(flower);
+
+            setTimeout(() => flower.remove(), 10000);
+        }
+        setInterval(createFlower, 500);
+
+        // Messages
+        const messages = [
+            "You are my favorite person ❤️",
+            "Like flowers, you make life beautiful 🌷",
+            "Every moment with you is special 💖",
+            "Happy Flowers Day, my love 🌹"
+        ];
+
+        let index = 0;
+
+        // Typing effect
+        function typeText(text) {
+            let i = 0;
+            const typing = document.getElementById("typing");
+            typing.innerHTML = "";
+            const interval = setInterval(() => {
+                typing.innerHTML += text.charAt(i);
+                i++;
+                if (i === text.length) clearInterval(interval);
+            }, 50);
+        }
+
+        function nextMessage() {
+            typeText(messages[index]);
+            index = (index + 1) % messages.length;
+        }
+
+        // Start first message
+        nextMessage();
+    </script>
+
+</body>
+
+</html>
